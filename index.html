@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Glam Vault</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #00145c, #0b2cff, #020024);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .floating-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .float {
+      position: absolute;
+      color: gold;
+      font-size: 34px;
+      opacity: 0.75;
+      animation: floatUp 12s linear infinite;
+      text-shadow: 0 0 15px gold, 0 0 30px white;
+    }
+
+    .float:nth-child(1) { left: 8%; animation-delay: 0s; }
+    .float:nth-child(2) { left: 22%; animation-delay: 3s; font-size: 26px; }
+    .float:nth-child(3) { left: 40%; animation-delay: 6s; }
+    .float:nth-child(4) { left: 58%; animation-delay: 2s; font-size: 28px; }
+    .float:nth-child(5) { left: 73%; animation-delay: 5s; }
+    .float:nth-child(6) { left: 88%; animation-delay: 8s; font-size: 30px; }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -80px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.85;
+      }
+      100% {
+        bottom: 110%;
+        transform: translateX(40px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .vault-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.78);
+      padding: 45px;
+      margin: 50px auto;
+      max-width: 720px;
+      border: 2px solid gold;
+      border-radius: 28px;
+      box-shadow: 0 0 25px gold, 0 0 55px #ffffff, 0 0 80px #0b2cff;
+    }
+
+    h1 {
+      color: gold;
+      font-size: 58px;
+      text-shadow: 0 0 15px gold, 0 0 35px white;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: gold;
+      font-size: 34px;
+      text-shadow: 0 0 12px gold;
+    }
+
+    p {
+      font-size: 21px;
+      color: #f5f5f5;
+    }
+
+    .button {
+      display: block;
+      background: linear-gradient(135deg, #0b2cff, #001f8f);
+      color: white;
+      padding: 20px;
+      margin: 22px auto;
+      width: 320px;
+      text-decoration: none;
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: bold;
+      border: 2px solid gold;
+      box-shadow: 0 0 15px #0b2cff, 0 0 25px gold;
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, gold, #c99700);
+      color: black;
+      transform: scale(1.06);
+      box-shadow: 0 0 30px gold, 0 0 55px white;
+    }
+
+    .gold-button {
+      background: linear-gradient(135deg, gold, #b8860b);
+      color: black;
+    }
+
+    .outline-button {
+      background: black;
+      color: white;
+    }
+
+    .sparkle {
+      font-size: 28px;
+      color: gold;
+      text-shadow: 0 0 12px gold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="floating-bg">
+    <div class="float">🦋</div>
+    <div class="float">✨</div>
+    <div class="float">💫</div>
+    <div class="float">🦋</div>
+    <div class="float">✦</div>
+    <div class="float">✨</div>
+  </div>
+
+  <div class="vault-box">
+
+    <div class="sparkle">✨ 🦋 ✨</div>
+
+    <h1>Glam Vault</h1>
+
+    <h2>Your Generator Experience Is Ready</h2>
+
+    <p>Everything you need is below. Click, create, and glow up your content.</p>
+
+    <a class="button" href="https://glam-weekday-affirmation-studio.netlify.app/">
+      💎 Weekday Affirmation Studio App
+    </a>
+
+    <a class="button gold-button" href="https://drive.google.com/file/d/1cOqcXXxVphhMOrKqgwSO_-0OhIefjK_7/view?usp=sharing">
+      📘 How-To-Use Guide
+    </a>
+
+    <a class="button" href="https://drive.google.com/file/d/1E5z2Mv52ifEi6HKm5l5wWSOlnyLe_Hg1/view?usp=sharing">
+      🔥 Bonus Prompt Pack
+    </a>
+
+<a class="button gold-button" href="https://drive.google.com/file/d/1HhLLDpkyCi23jJJ5G5Q6I5DNFjTE92nG/view?usp=sharing"_blank">
+  💰 How To Sell Your Designs
+</a>
+    <a class="button outline-button" href="https://www.facebook.com/share/g/1HJMH211KS/" target="_blank">
+      🦋 Join Community
+    </a>
+
+    <p>No digging. No confusion. Just glam.</p>
+
+  </div>
+
+</body>
+</html>n
