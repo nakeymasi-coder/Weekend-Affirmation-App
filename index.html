@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glam Vault</title>
+  <meta name="description" content="Glam Vault - Your Generator Experience Is Ready. Access affirmation apps, guides, bonus prompt packs, and resources.">
+  <meta property="og:title" content="Glam Vault">
+  <meta property="og:description" content="Glam Vault - Your Generator Experience Is Ready. Access affirmation apps, guides, bonus prompt packs, and resources.">
 
   <style>
     body {
@@ -10,9 +15,10 @@
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px;
+      padding: 40px 20px;
       min-height: 100vh;
       overflow-x: hidden;
+      box-sizing: border-box;
     }
 
     .floating-bg {
@@ -59,18 +65,20 @@
       position: relative;
       z-index: 2;
       background: rgba(0, 0, 0, 0.78);
-      padding: 45px;
+      padding: 45px 30px;
       margin: 50px auto;
       max-width: 720px;
       border: 2px solid gold;
       border-radius: 28px;
       box-shadow: 0 0 25px gold, 0 0 55px #ffffff, 0 0 80px #0b2cff;
+      box-sizing: border-box;
     }
 
     h1 {
       color: gold;
       font-size: 58px;
       text-shadow: 0 0 15px gold, 0 0 35px white;
+      margin-top: 10px;
       margin-bottom: 10px;
     }
 
@@ -91,7 +99,8 @@
       color: white;
       padding: 20px;
       margin: 22px auto;
-      width: 320px;
+      max-width: 320px;
+      width: 100%;
       text-decoration: none;
       border-radius: 18px;
       font-size: 20px;
@@ -99,6 +108,7 @@
       border: 2px solid gold;
       box-shadow: 0 0 15px #0b2cff, 0 0 25px gold;
       transition: all 0.3s ease;
+      box-sizing: border-box;
     }
 
     .button:hover {
@@ -122,6 +132,26 @@
       font-size: 28px;
       color: gold;
       text-shadow: 0 0 12px gold;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 40px;
+      }
+      h2 {
+        font-size: 26px;
+      }
+      p {
+        font-size: 18px;
+      }
+      .vault-box {
+        padding: 30px 20px;
+        margin: 20px auto;
+      }
+      .button {
+        font-size: 18px;
+        padding: 16px;
+      }
     }
   </style>
 </head>
@@ -147,22 +177,23 @@
 
     <p>Everything you need is below. Click, create, and glow up your content.</p>
 
-    <a class="button" href="https://glam-weekday-affirmation-studio.netlify.app/">
+    <a class="button" href="https://glam-weekday-affirmation-studio.netlify.app/" target="_blank" rel="noopener noreferrer">
       💎 Weekday Affirmation Studio App
     </a>
 
-    <a class="button gold-button" href="https://drive.google.com/file/d/1cOqcXXxVphhMOrKqgwSO_-0OhIefjK_7/view?usp=sharing">
+    <a class="button gold-button" href="https://drive.google.com/file/d/1cOqcXXxVphhMOrKqgwSO_-0OhIefjK_7/view?usp=sharing" target="_blank" rel="noopener noreferrer">
       📘 How-To-Use Guide
     </a>
 
-    <a class="button" href="https://drive.google.com/file/d/1E5z2Mv52ifEi6HKm5l5wWSOlnyLe_Hg1/view?usp=sharing">
+    <a class="button" href="https://drive.google.com/file/d/1E5z2Mv52ifEi6HKm5l5wWSOlnyLe_Hg1/view?usp=sharing" target="_blank" rel="noopener noreferrer">
       🔥 Bonus Prompt Pack
     </a>
 
-<a class="button gold-button" href="https://drive.google.com/file/d/1HhLLDpkyCi23jJJ5G5Q6I5DNFjTE92nG/view?usp=sharing"_blank">
-  💰 How To Sell Your Designs
-</a>
-    <a class="button outline-button" href="https://www.facebook.com/share/g/1HJMH211KS/" target="_blank">
+    <a class="button gold-button" href="https://drive.google.com/file/d/1HhLLDpkyCi23jJJ5G5Q6I5DNFjTE92nG/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+      💰 How To Sell Your Designs
+    </a>
+
+    <a class="button outline-button" href="https://www.facebook.com/share/g/1HJMH211KS/" target="_blank" rel="noopener noreferrer">
       🦋 Join Community
     </a>
 
@@ -171,4 +202,4 @@
   </div>
 
 </body>
-</html>n
+</html>

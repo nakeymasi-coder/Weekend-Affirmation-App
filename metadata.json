@@ -1,0 +1,8 @@
+{
+  "name": "Glam Vault",
+  "description": "Glam Vault - Your Generator Experience Is Ready. Access affirmation apps, guides, bonus prompt packs, and resources.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
