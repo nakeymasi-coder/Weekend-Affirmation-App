@@ -9,18 +9,34 @@
   <meta property="og:description" content="Glam Vault - Your Generator Experience Is Ready. Access affirmation apps, guides, bonus prompt packs, and resources.">
 
   <style>
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #00145c, #0b2cff, #020024);
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      min-height: 100vh;
-      overflow-x: hidden;
-      box-sizing: border-box;
+    :root {
+      --gold: #ffd700;
+      --gold-dark: #b8860b;
+      --gold-light: #fff3a8;
+      --blue-primary: #0b2cff;
+      --blue-deep: #00145c;
+      --bg-dark: #020024;
+      --glass-bg: rgba(6, 12, 38, 0.88);
+      --glass-border: rgba(255, 215, 0, 0.45);
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #00145c 0%, #0b2cff 50%, #020024 100%);
+      color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Floating ambient butterflies and sparkles */
     .floating-bg {
       position: fixed;
       inset: 0;
@@ -31,126 +47,740 @@
 
     .float {
       position: absolute;
-      color: gold;
-      font-size: 34px;
-      opacity: 0.75;
-      animation: floatUp 12s linear infinite;
+      color: var(--gold);
+      font-size: 32px;
+      opacity: 0.7;
+      animation: floatUp 14s linear infinite;
       text-shadow: 0 0 15px gold, 0 0 30px white;
     }
 
-    .float:nth-child(1) { left: 8%; animation-delay: 0s; }
-    .float:nth-child(2) { left: 22%; animation-delay: 3s; font-size: 26px; }
-    .float:nth-child(3) { left: 40%; animation-delay: 6s; }
-    .float:nth-child(4) { left: 58%; animation-delay: 2s; font-size: 28px; }
-    .float:nth-child(5) { left: 73%; animation-delay: 5s; }
-    .float:nth-child(6) { left: 88%; animation-delay: 8s; font-size: 30px; }
+    .float:nth-child(1) { left: 6%; animation-delay: 0s; font-size: 28px; }
+    .float:nth-child(2) { left: 20%; animation-delay: 4s; font-size: 24px; }
+    .float:nth-child(3) { left: 38%; animation-delay: 7s; font-size: 32px; }
+    .float:nth-child(4) { left: 56%; animation-delay: 2s; font-size: 26px; }
+    .float:nth-child(5) { left: 74%; animation-delay: 6s; font-size: 30px; }
+    .float:nth-child(6) { left: 90%; animation-delay: 9s; font-size: 26px; }
 
     @keyframes floatUp {
       0% {
-        bottom: -80px;
+        bottom: -60px;
         transform: translateX(0) rotate(0deg);
         opacity: 0;
       }
       15% {
         opacity: 0.85;
       }
+      90% {
+        opacity: 0.85;
+      }
       100% {
         bottom: 110%;
-        transform: translateX(40px) rotate(360deg);
+        transform: translateX(35px) rotate(360deg);
         opacity: 0;
       }
     }
 
-    .vault-box {
+    /* Single-screen viewport shell - No sections underneath */
+    .home-screen {
       position: relative;
       z-index: 2;
-      background: rgba(0, 0, 0, 0.78);
-      padding: 45px 30px;
-      margin: 50px auto;
-      max-width: 720px;
-      border: 2px solid gold;
-      border-radius: 28px;
-      box-shadow: 0 0 25px gold, 0 0 55px #ffffff, 0 0 80px #0b2cff;
-      box-sizing: border-box;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .vault-box {
+      width: 100%;
+      max-width: 740px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid var(--gold);
+      border-radius: 26px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.45), 0 0 60px rgba(11, 44, 255, 0.5), inset 0 0 20px rgba(255, 215, 0, 0.1);
+      padding: 30px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sparkle-banner {
+      font-size: 24px;
+      color: var(--gold);
+      text-shadow: 0 0 12px gold;
+      margin-bottom: 6px;
+      letter-spacing: 4px;
+      animation: pulseSparkle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseSparkle {
+      from { transform: scale(1); filter: brightness(1); }
+      to { transform: scale(1.08); filter: brightness(1.3); }
     }
 
     h1 {
-      color: gold;
-      font-size: 58px;
-      text-shadow: 0 0 15px gold, 0 0 35px white;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 46px;
+      line-height: 1.1;
+      text-shadow: 0 0 15px gold, 0 0 35px rgba(255, 255, 255, 0.7);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
     }
 
     h2 {
-      color: gold;
-      font-size: 34px;
-      text-shadow: 0 0 12px gold;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 600;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+      margin-bottom: 8px;
     }
 
-    p {
-      font-size: 21px;
-      color: #f5f5f5;
+    .subtitle {
+      font-size: 16px;
+      color: #e2e8f0;
+      max-width: 540px;
+      margin-bottom: 22px;
+      line-height: 1.4;
     }
 
-    .button {
-      display: block;
-      background: linear-gradient(135deg, #0b2cff, #001f8f);
-      color: white;
-      padding: 20px;
-      margin: 22px auto;
-      max-width: 320px;
+    /* Grid of Tools */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
       width: 100%;
+      max-width: 650px;
+      margin-bottom: 20px;
+    }
+
+    .tool-btn {
+      appearance: none;
+      border: 2px solid var(--gold);
+      background: linear-gradient(135deg, rgba(11, 44, 255, 0.85), rgba(0, 20, 92, 0.95));
+      color: #ffffff;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
       text-decoration: none;
-      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 0 14px rgba(11, 44, 255, 0.4), 0 0 20px rgba(255, 215, 0, 0.25);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .tool-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 255, 255, 0.5);
+    }
+
+    .tool-btn:hover::after {
+      opacity: 1;
+    }
+
+    .tool-btn.gold-style {
+      background: linear-gradient(135deg, var(--gold), #c99700);
+      color: #070714;
+      text-shadow: none;
+    }
+
+    .tool-btn.gold-style:hover {
+      background: linear-gradient(135deg, #fff080, #e6b800);
+      color: #000000;
+    }
+
+    .tool-btn.outline-style {
+      background: rgba(0, 0, 0, 0.85);
+      color: #ffffff;
+    }
+
+    .tool-btn.full-width {
+      grid-column: span 2;
+    }
+
+    .tool-icon {
       font-size: 20px;
-      font-weight: bold;
-      border: 2px solid gold;
-      box-shadow: 0 0 15px #0b2cff, 0 0 25px gold;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
+      line-height: 1;
     }
 
-    .button:hover {
-      background: linear-gradient(135deg, gold, #c99700);
-      color: black;
-      transform: scale(1.06);
-      box-shadow: 0 0 30px gold, 0 0 55px white;
+    .tool-label {
+      flex: 1;
+      text-align: left;
     }
 
-    .gold-button {
-      background: linear-gradient(135deg, gold, #b8860b);
-      color: black;
+    .saved-badge-pill {
+      font-size: 11px;
+      background: rgba(255, 215, 0, 0.25);
+      color: var(--gold-light);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 215, 0, 0.5);
     }
 
-    .outline-button {
-      background: black;
-      color: white;
+    .vault-footer {
+      font-size: 14px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .sparkle {
-      font-size: 28px;
-      color: gold;
-      text-shadow: 0 0 12px gold;
+    .vault-saved-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold);
+      font-size: 12px;
+      background: rgba(255, 215, 0, 0.12);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
-    @media (max-width: 600px) {
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    /* ========================================================= */
+    /* MODAL OVERLAY - OPENS OVER THE HOME SCREEN */
+    /* ========================================================= */
+    .overlay-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(1, 4, 20, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .overlay-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .overlay-modal {
+      width: 100%;
+      max-width: 860px;
+      height: 88vh;
+      max-height: 88vh;
+      background: #050b24;
+      border: 2px solid var(--gold);
+      border-radius: 22px;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.4), 0 0 80px rgba(11, 44, 255, 0.6);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.96) translateY(12px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s, max-width 0.2s, height 0.2s;
+    }
+
+    .overlay-backdrop.active .overlay-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    /* When opening the actual studio, make modal spacious & immersive */
+    .overlay-modal.is-studio {
+      max-width: 96vw;
+      width: 96vw;
+      height: 94vh;
+      max-height: 94vh;
+    }
+
+    /* Modal Header */
+    .modal-header {
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #091a5e 0%, #001040 100%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .modal-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .autosave-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #a7f3d0;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-btn {
+      appearance: none;
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 215, 0, 0.25);
+      color: #ffffff;
+    }
+
+    .close-btn {
+      appearance: none;
+      background: linear-gradient(135deg, var(--gold), #c99700);
+      border: 1px solid var(--gold);
+      color: #020024;
+      padding: 7px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .close-btn:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 0 15px var(--gold);
+      transform: translateY(-1px);
+    }
+
+    /* Modal Body Containers */
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+      display: none;
+      color: #f1f5f9;
+    }
+
+    .modal-body.active {
+      display: block;
+    }
+
+    /* Studio body fills full container without inner padding */
+    #body-studio {
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    #body-studio.active {
+      display: flex;
+    }
+
+    .studio-iframe-wrapper {
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      position: relative;
+      background: #020024;
+    }
+
+    .studio-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #020024;
+    }
+
+    /* Custom gold scrollbar */
+    .modal-body::-webkit-scrollbar {
+      width: 7px;
+    }
+    .modal-body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .modal-body::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 4px;
+    }
+    .modal-body::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    /* Content cards inside modals */
+    .content-card {
+      background: rgba(10, 20, 60, 0.65);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .content-card h3 {
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lead-text {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    .form-textarea {
+      width: 100%;
+      height: 75px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #ffffff;
+      font-size: 14px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #c99700);
+      color: #020024;
+      border: none;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 9px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 215, 0, 0.15);
+    }
+
+    /* Interactive checklist */
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .checklist-item:hover {
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--gold);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .checklist-label {
+      font-size: 14px;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    .checklist-item.done .checklist-label {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+
+    /* Prompts Pack UI */
+    .prompt-categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+
+    .cat-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cat-pill.active {
+      background: var(--gold);
+      color: #020024;
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    .prompts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .prompt-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .prompt-box-text {
+      font-size: 14px;
+      color: #f1f5f9;
+      line-height: 1.4;
+    }
+
+    .copy-pill-btn {
+      background: rgba(255, 215, 0, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .copy-pill-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .delete-card-btn {
+      background: none;
+      border: none;
+      color: #f87171;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px 4px;
+    }
+
+    /* Calculator */
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .calc-stat {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+
+    .calc-stat-label {
+      font-size: 12px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .calc-stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #001040;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      z-index: 200;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 680px) {
+      .vault-box {
+        padding: 22px 18px;
+      }
       h1 {
-        font-size: 40px;
+        font-size: 34px;
       }
       h2 {
-        font-size: 26px;
-      }
-      p {
         font-size: 18px;
       }
-      .vault-box {
-        padding: 30px 20px;
-        margin: 20px auto;
+      .subtitle {
+        font-size: 14px;
+        margin-bottom: 16px;
       }
-      .button {
-        font-size: 18px;
-        padding: 16px;
+      .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .tool-btn.full-width {
+        grid-column: span 1;
+      }
+      .tool-btn {
+        padding: 12px 14px;
+        font-size: 15px;
+      }
+      .calc-row {
+        grid-template-columns: 1fr;
+      }
+      .modal-header {
+        padding: 10px 14px;
+      }
+      .modal-title {
+        font-size: 16px;
       }
     }
   </style>
@@ -158,6 +788,7 @@
 
 <body>
 
+  <!-- Floating Ambient Particles -->
   <div class="floating-bg">
     <div class="float">🦋</div>
     <div class="float">✨</div>
@@ -167,39 +798,716 @@
     <div class="float">✨</div>
   </div>
 
-  <div class="vault-box">
+  <!-- SINGLE-SCREEN HOME EXPERIENCE (No sections underneath) -->
+  <main class="home-screen">
+    <div class="vault-box">
+      
+      <div class="sparkle-banner">✨ 🦋 ✨</div>
+      <h1>Glam Vault</h1>
+      <h2>Your Generator Experience Is Ready</h2>
+      <p class="subtitle">Everything you need is below. Click, create, and glow up your content — your work stays active and saved right here.</p>
 
-    <div class="sparkle">✨ 🦋 ✨</div>
+      <!-- Tool Launchers Grid -->
+      <div class="tools-grid">
+        <button class="tool-btn" data-tool="studio">
+          <span class="tool-icon">💎</span>
+          <span class="tool-label">Weekday Affirmation Studio App</span>
+          <span class="saved-badge-pill" id="studioBadge">Live App</span>
+        </button>
 
-    <h1>Glam Vault</h1>
+        <button class="tool-btn gold-style" data-tool="guide">
+          <span class="tool-icon">📘</span>
+          <span class="tool-label">How-To-Use Guide</span>
+          <span class="saved-badge-pill" id="guideStepsBadge" style="background:rgba(0,0,0,0.15);color:#000;">Guide</span>
+        </button>
 
-    <h2>Your Generator Experience Is Ready</h2>
+        <button class="tool-btn" data-tool="prompts">
+          <span class="tool-icon">🔥</span>
+          <span class="tool-label">Bonus Prompt Pack</span>
+          <span class="saved-badge-pill" id="customPromptsBadge">Prompts</span>
+        </button>
 
-    <p>Everything you need is below. Click, create, and glow up your content.</p>
+        <button class="tool-btn gold-style" data-tool="sales">
+          <span class="tool-icon">💰</span>
+          <span class="tool-label">How To Sell Your Designs</span>
+          <span class="saved-badge-pill" id="salesGoalBadge" style="background:rgba(0,0,0,0.15);color:#000;">Playbook</span>
+        </button>
 
-    <a class="button" href="https://glam-weekday-affirmation-studio.netlify.app/" target="_blank" rel="noopener noreferrer">
-      💎 Weekday Affirmation Studio App
-    </a>
+        <button class="tool-btn outline-style full-width" data-tool="community">
+          <span class="tool-icon">🦋</span>
+          <span class="tool-label">Join Community & Challenge Hub</span>
+          <span class="saved-badge-pill">VIP Portal</span>
+        </button>
+      </div>
 
-    <a class="button gold-button" href="https://drive.google.com/file/d/1cOqcXXxVphhMOrKqgwSO_-0OhIefjK_7/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-      📘 How-To-Use Guide
-    </a>
+      <!-- Footer indicator -->
+      <div class="vault-footer">
+        <span>No digging. No confusion. Just glam.</span>
+        <div class="vault-saved-status">
+          <span class="pulse-dot"></span>
+          <span>Vault Active</span>
+        </div>
+      </div>
 
-    <a class="button" href="https://drive.google.com/file/d/1E5z2Mv52ifEi6HKm5l5wWSOlnyLe_Hg1/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-      🔥 Bonus Prompt Pack
-    </a>
+    </div>
+  </main>
 
-    <a class="button gold-button" href="https://drive.google.com/file/d/1HhLLDpkyCi23jJJ5G5Q6I5DNFjTE92nG/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-      💰 How To Sell Your Designs
-    </a>
+  <!-- ========================================================= -->
+  <!-- OVERLAY MODAL (OPENS TOOLS DIRECTLY OVER HOME SCREEN) -->
+  <!-- ========================================================= -->
+  <div class="overlay-backdrop" id="overlayBackdrop" aria-modal="true" role="dialog">
+    <div class="overlay-modal" id="overlayModal">
+      
+      <!-- Top Bar with Status, External Option & Close Button -->
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-title" id="modalTitle">💎 Weekday Affirmation Studio App</span>
+          <span class="autosave-pill">
+            <span class="pulse-dot"></span> Saved in Memory
+          </span>
+        </div>
+        
+        <div class="header-actions">
+          <!-- Studio-specific quick actions -->
+          <button class="header-btn" id="reloadStudioBtn" title="Reload Studio" style="display:none;">
+            <span>⟳</span> <span>Reload</span>
+          </button>
+          <a class="header-btn" id="openExternalBtn" href="https://glam-weekday-affirmation-studio.netlify.app/" target="_blank" rel="noopener noreferrer" title="Open Studio in New Tab">
+            <span>New Tab</span> <span>↗</span>
+          </a>
+          <!-- Close button returns to the home screen -->
+          <button class="close-btn" id="closeModalBtn" aria-label="Close and Return to Home">
+            <span>✕</span>
+            <span>Back to Vault</span>
+          </button>
+        </div>
+      </div>
 
-    <a class="button outline-button" href="https://www.facebook.com/share/g/1HJMH211KS/" target="_blank" rel="noopener noreferrer">
-      🦋 Join Community
-    </a>
+      <!-- ========================================================= -->
+      <!-- TOOL 1: YOUR ACTUAL WEEKDAY AFFIRMATION STUDIO APP -->
+      <!-- Kept persistent in the DOM so your work, inputs, and designs remain saved! -->
+      <!-- ========================================================= -->
+      <div class="modal-body" id="body-studio">
+        <div class="studio-iframe-wrapper">
+          <iframe 
+            id="studioIframe"
+            class="studio-iframe"
+            src="https://glam-weekday-affirmation-studio.netlify.app/" 
+            title="Weekday Affirmation Studio App"
+            allow="clipboard-write; clipboard-read; camera; microphone; download"
+            loading="eager"
+          ></iframe>
+        </div>
+      </div>
 
-    <p>No digging. No confusion. Just glam.</p>
+      <!-- ========================================================= -->
+      <!-- TOOL 2: HOW-TO-USE GUIDE -->
+      <!-- ========================================================= -->
+      <div class="modal-body" id="body-guide">
+        <div class="content-card">
+          <h3>
+            <span>📘 Quick-Start Mastery Roadmap</span>
+            <a href="https://drive.google.com/file/d/1cOqcXXxVphhMOrKqgwSO_-0OhIefjK_7/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              Open Full Guide PDF ↗
+            </a>
+          </h3>
+          <p class="lead-text">Track your progress below. Your checkmarks stay saved in your vault so you can pick up anytime.</p>
 
+          <ul class="checklist" id="guideChecklist">
+            <li class="checklist-item" data-step="0">
+              <input type="checkbox" id="g_step_0">
+              <label class="checklist-label" for="g_step_0"><strong>Step 1: Launch Weekday Studio</strong> — Open the Studio above to choose your day of the week and affirmation focus.</label>
+            </li>
+            <li class="checklist-item" data-step="1">
+              <input type="checkbox" id="g_step_1">
+              <label class="checklist-label" for="g_step_1"><strong>Step 2: Customize Visual Aesthetics</strong> — Choose aesthetic backgrounds, typography, and glam accents to match your brand.</label>
+            </li>
+            <li class="checklist-item" data-step="2">
+              <input type="checkbox" id="g_step_2">
+              <label class="checklist-label" for="g_step_2"><strong>Step 3: Download & Schedule</strong> — Export high-resolution graphics for Instagram Stories, Reels, TikTok covers, and Pinterest.</label>
+            </li>
+            <li class="checklist-item" data-step="3">
+              <input type="checkbox" id="g_step_3">
+              <label class="checklist-label" for="g_step_3"><strong>Step 4: Batch a Full Week</strong> — Take 10 minutes on Sunday to create your entire Monday–Friday affirmation pipeline.</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="content-card">
+          <h3>✨ Pro Creator Glam Rules</h3>
+          <p class="lead-text">
+            <strong>1. Daily Consistency:</strong> Share your generated affirmation every morning when your audience wakes up.<br>
+            <strong>2. High Contrast Aesthetic:</strong> Keep typography bold and legible over radiant gradients.<br>
+            <strong>3. Save Your Favorites:</strong> Keep your winning creations safe in your vault.
+          </p>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- TOOL 3: BONUS PROMPT PACK -->
+      <!-- ========================================================= -->
+      <div class="modal-body" id="body-prompts">
+        <div class="content-card">
+          <h3>
+            <span>🔥 Bonus Prompt Pack</span>
+            <a href="https://drive.google.com/file/d/1E5z2Mv52ifEi6HKm5l5wWSOlnyLe_Hg1/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              Open Drive Pack ↗
+            </a>
+          </h3>
+          <p class="lead-text">Click any prompt to copy it instantly. Add your own custom prompts to your personal Vault collection below.</p>
+
+          <!-- Category filter tabs -->
+          <div class="prompt-categories">
+            <button class="cat-pill active" data-cat="all">All Prompts</button>
+            <button class="cat-pill" data-cat="abundance">Abundance & Wealth</button>
+            <button class="cat-pill" data-cat="glowup">Glow Up & Beauty</button>
+            <button class="cat-pill" data-cat="boss">CEO & Boss Energy</button>
+            <button class="cat-pill" data-cat="softlife">Soft Life & Peace</button>
+            <button class="cat-pill" data-cat="custom">My Custom Prompts</button>
+          </div>
+
+          <!-- Prompts list -->
+          <div class="prompts-list" id="promptsContainer">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Add Custom Prompt to Vault -->
+        <div class="content-card">
+          <h3>✍️ Add Your Own Secret Prompt</h3>
+          <div class="form-group">
+            <textarea class="form-textarea" id="customPromptInput" placeholder="Enter your favorite affirmation prompt or caption formula..."></textarea>
+          </div>
+          <button class="btn-gold" id="addCustomPromptBtn">➕ Save Prompt to Vault</button>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- TOOL 4: HOW TO SELL YOUR DESIGNS -->
+      <!-- ========================================================= -->
+      <div class="modal-body" id="body-sales">
+        <div class="content-card">
+          <h3>
+            <span>💰 How To Sell Your Designs & Digital Packs</span>
+            <a href="https://drive.google.com/file/d/1HhLLDpkyCi23jJJ5G5Q6I5DNFjTE92nG/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              Open Full Sales Guide ↗
+            </a>
+          </h3>
+          <p class="lead-text">Turn your affirmation cards and graphics into digital income streams on Etsy, Gumroad, Stan Store, and Shopify.</p>
+
+          <!-- Sales / Profit Calculator -->
+          <div class="calc-row">
+            <div class="calc-stat">
+              <div class="calc-stat-label">Pack Price ($)</div>
+              <input type="number" id="calcPrice" min="1" max="1000" value="19" style="background:transparent;border:none;border-bottom:2px solid var(--gold);color:#fff;font-size:24px;font-weight:700;text-align:center;width:100px;">
+            </div>
+            <div class="calc-stat">
+              <div class="calc-stat-label">Monthly Target Sales</div>
+              <input type="number" id="calcUnits" min="1" max="10000" value="50" style="background:transparent;border:none;border-bottom:2px solid var(--gold);color:#fff;font-size:24px;font-weight:700;text-align:center;width:100px;">
+            </div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-stat">
+              <div class="calc-stat-label">Estimated Monthly Revenue</div>
+              <div class="calc-stat-value" id="calcMonthlyRevenue">$950</div>
+            </div>
+            <div class="calc-stat">
+              <div class="calc-stat-label">Annual Projected Run-Rate</div>
+              <div class="calc-stat-value" id="calcAnnualRevenue">$11,400</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Launch Checklist -->
+        <div class="content-card">
+          <h3>🚀 Your Digital Product Launch Checklist</h3>
+          <ul class="checklist" id="salesChecklist">
+            <li class="checklist-item" data-sales-step="0">
+              <input type="checkbox" id="s_step_0">
+              <label class="checklist-label" for="s_step_0"><strong>Curate 30-Card Theme Pack</strong> (e.g. 30-Day Luxury Glow Up Affirmations).</label>
+            </li>
+            <li class="checklist-item" data-sales-step="1">
+              <input type="checkbox" id="s_step_1">
+              <label class="checklist-label" for="s_step_1"><strong>Design 3 High-End Mockups</strong> showing cards on iPhone lock screens and desktop wallpapers.</label>
+            </li>
+            <li class="checklist-item" data-sales-step="2">
+              <input type="checkbox" id="s_step_2">
+              <label class="checklist-label" for="s_step_2"><strong>Publish Product Listing</strong> with clear benefit bullets and instant digital download link.</label>
+            </li>
+            <li class="checklist-item" data-sales-step="3">
+              <input type="checkbox" id="s_step_3">
+              <label class="checklist-label" for="s_step_3"><strong>Post 3 Short-Form Videos</strong> (TikTok / Reels) previewing the cards in action with trending sound.</label>
+            </li>
+          </ul>
+
+          <div class="form-group" style="margin-top: 14px;">
+            <label class="form-label" for="salesNotes">My Product Ideas & Pricing Notes</label>
+            <textarea class="form-textarea" id="salesNotes" placeholder="Example: 50 Luxury Affirmation Cards Bundle priced at $27..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- TOOL 5: VIP COMMUNITY HUB & CHALLENGE -->
+      <!-- ========================================================= -->
+      <div class="modal-body" id="body-community">
+        <div class="content-card">
+          <h3>
+            <span>🦋 Glam Creator Community</span>
+            <a href="https://www.facebook.com/share/g/1HJMH211KS/" target="_blank" rel="noopener noreferrer" class="btn-gold">
+              Join Facebook Group ↗
+            </a>
+          </h3>
+          <p class="lead-text">Connect with fellow high-frequency creators, share your affirmation graphics, get feedback, and collaborate in the Facebook group.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>🗓️ 5-Day Glam Streak Challenge</h3>
+          <p class="lead-text">Post or recite 1 affirmation card each day. Check off your streak days below:</p>
+          <ul class="checklist" id="communityChecklist">
+            <li class="checklist-item" data-comm-step="0">
+              <input type="checkbox" id="c_step_0">
+              <label class="checklist-label" for="c_step_0">✨ Day 1: Abundance & Gratitude Card</label>
+            </li>
+            <li class="checklist-item" data-comm-step="1">
+              <input type="checkbox" id="c_step_1">
+              <label class="checklist-label" for="c_step_1">💎 Day 2: Magnetic Confidence Card</label>
+            </li>
+            <li class="checklist-item" data-comm-step="2">
+              <input type="checkbox" id="c_step_2">
+              <label class="checklist-label" for="c_step_2">👑 Day 3: CEO Energy & Breakthrough Card</label>
+            </li>
+            <li class="checklist-item" data-comm-step="3">
+              <input type="checkbox" id="c_step_3">
+              <label class="checklist-label" for="c_step_3">💫 Day 4: Soft Life & Inner Radiance Card</label>
+            </li>
+            <li class="checklist-item" data-comm-step="4">
+              <input type="checkbox" id="c_step_4">
+              <label class="checklist-label" for="c_step_4">🦋 Day 5: Celebration & Golden Horizon Card</label>
+            </li>
+          </ul>
+
+          <div class="form-group" style="margin-top: 14px;">
+            <label class="form-label" for="communityNotes">My Weekly Reflection & Affirmation Goal</label>
+            <textarea class="form-textarea" id="communityNotes" placeholder="Write your intention for this week..."></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">✨ Auto-saved</div>
+
+  <script>
+    // =========================================================
+    // STATE PERSISTENCE
+    // =========================================================
+    const STORAGE_KEY = 'glam_vault_data_v2';
+
+    const staticPrompts = [
+      { id: 'p1', cat: 'abundance', text: 'I am worthy of wealth, opulence, and financial freedom in every dimension.' },
+      { id: 'p2', cat: 'abundance', text: 'Unexpected checks, gifts, and opportunities are heading to me right now.' },
+      { id: 'p3', cat: 'abundance', text: 'My bank account reflects my expanding wealth consciousness.' },
+      { id: 'p4', cat: 'glowup', text: 'I radiate divine beauty, youthful vitality, and magnetic grace.' },
+      { id: 'p5', cat: 'glowup', text: 'My glow starts from within and lights up every room I enter.' },
+      { id: 'p6', cat: 'glowup', text: 'I treat my mind, body, and spirit like the sacred temple it is.' },
+      { id: 'p7', cat: 'boss', text: 'I execute with excellence, negotiate with power, and build legacy wealth.' },
+      { id: 'p8', cat: 'boss', text: 'I am a visionary creator who turns thoughts into lucrative reality.' },
+      { id: 'p9', cat: 'boss', text: 'Rejection is simply divine redirection to something 10x grander.' },
+      { id: 'p10', cat: 'softlife', text: 'I choose peace over performance and grace over hustle.' },
+      { id: 'p11', cat: 'softlife', text: 'My life is soft, fragrant, serene, and deeply supported.' },
+      { id: 'p12', cat: 'softlife', text: 'I exhale doubt and inhale divine luxury and calm.' }
+    ];
+
+    let state = {
+      guideSteps: [false, false, false, false],
+      salesSteps: [false, false, false, false],
+      communitySteps: [false, false, false, false, false],
+      customPrompts: [],
+      salesPrice: 19,
+      salesUnits: 50,
+      salesNotes: '',
+      communityNotes: ''
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          state = { ...state, ...parsed };
+        }
+      } catch (e) {
+        console.error('Error loading vault state:', e);
+      }
+    }
+
+    function saveState(showNotification = false) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        updateHomeBadges();
+        if (showNotification) {
+          showToast('✨ Work saved to Vault');
+        }
+      } catch (e) {
+        console.error('Error saving vault state:', e);
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    // =========================================================
+    // MODAL OVERLAY CONTROLS (OPENS OVER THE HOME SCREEN)
+    // =========================================================
+    const backdrop = document.getElementById('overlayBackdrop');
+    const modal = document.getElementById('overlayModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const openExternalBtn = document.getElementById('openExternalBtn');
+    const reloadStudioBtn = document.getElementById('reloadStudioBtn');
+    const studioIframe = document.getElementById('studioIframe');
+
+    const toolMeta = {
+      studio: {
+        title: '💎 Weekday Affirmation Studio App',
+        externalUrl: 'https://glam-weekday-affirmation-studio.netlify.app/',
+        isStudio: true
+      },
+      guide: {
+        title: '📘 How-To-Use Guide & Roadmap',
+        externalUrl: 'https://drive.google.com/file/d/1cOqcXXxVphhMOrKqgwSO_-0OhIefjK_7/view?usp=sharing',
+        isStudio: false
+      },
+      prompts: {
+        title: '🔥 Bonus Prompt Pack & Vault',
+        externalUrl: 'https://drive.google.com/file/d/1E5z2Mv52ifEi6HKm5l5wWSOlnyLe_Hg1/view?usp=sharing',
+        isStudio: false
+      },
+      sales: {
+        title: '💰 How To Sell Your Designs',
+        externalUrl: 'https://drive.google.com/file/d/1HhLLDpkyCi23jJJ5G5Q6I5DNFjTE92nG/view?usp=sharing',
+        isStudio: false
+      },
+      community: {
+        title: '🦋 VIP Community Hub & Streak',
+        externalUrl: 'https://www.facebook.com/share/g/1HJMH211KS/',
+        isStudio: false
+      }
+    };
+
+    function openTool(toolKey) {
+      const meta = toolMeta[toolKey] || { title: 'Glam Vault Tool', externalUrl: '#', isStudio: false };
+      modalTitle.textContent = meta.title;
+      openExternalBtn.href = meta.externalUrl;
+
+      if (meta.isStudio) {
+        modal.classList.add('is-studio');
+        reloadStudioBtn.style.display = 'inline-flex';
+      } else {
+        modal.classList.remove('is-studio');
+        reloadStudioBtn.style.display = 'none';
+      }
+
+      // Hide other bodies, show target body
+      document.querySelectorAll('.modal-body').forEach(b => b.classList.remove('active'));
+      const activeBody = document.getElementById(`body-${toolKey}`);
+      if (activeBody) {
+        activeBody.classList.add('active');
+      }
+
+      backdrop.classList.add('active');
+    }
+
+    function closeTool() {
+      saveState(false);
+      // Simply hide the backdrop overlay.
+      // THE STUDIO IFRAME REMAINS MOUNTED AND ACTIVE IN THE DOM!
+      // All user work, designs, and inputs stay completely saved.
+      backdrop.classList.remove('active');
+    }
+
+    // Launch buttons on home screen
+    document.querySelectorAll('[data-tool]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const toolKey = btn.getAttribute('data-tool');
+        openTool(toolKey);
+      });
+    });
+
+    closeModalBtn.addEventListener('click', closeTool);
+
+    // Clicking outside modal closes it and returns to home screen
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        closeTool();
+      }
+    });
+
+    // ESC key closes overlay and returns to home screen
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.classList.contains('active')) {
+        closeTool();
+      }
+    });
+
+    // Studio Reload button
+    reloadStudioBtn.addEventListener('click', () => {
+      if (confirm('Reload the Weekday Affirmation Studio?')) {
+        studioIframe.src = 'https://glam-weekday-affirmation-studio.netlify.app/';
+        showToast('⟳ Studio reloaded');
+      }
+    });
+
+    // =========================================================
+    // TOOL 2: GUIDE CHECKLIST
+    // =========================================================
+    function syncGuideUI() {
+      document.querySelectorAll('#guideChecklist .checklist-item').forEach(item => {
+        const step = Number(item.dataset.step);
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        const isDone = !!state.guideSteps[step];
+        checkbox.checked = isDone;
+        if (isDone) item.classList.add('done');
+        else item.classList.remove('done');
+      });
+      updateHomeBadges();
+    }
+
+    document.querySelectorAll('#guideChecklist .checklist-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        const step = Number(item.dataset.step);
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        if (e.target !== checkbox) {
+          checkbox.checked = !checkbox.checked;
+        }
+        state.guideSteps[step] = checkbox.checked;
+        if (checkbox.checked) item.classList.add('done');
+        else item.classList.remove('done');
+        saveState(false);
+      });
+    });
+
+    // =========================================================
+    // TOOL 3: PROMPTS PACK & CUSTOM PROMPTS
+    // =========================================================
+    const promptsContainer = document.getElementById('promptsContainer');
+    const customPromptInput = document.getElementById('customPromptInput');
+    const addCustomPromptBtn = document.getElementById('addCustomPromptBtn');
+    let activePromptCat = 'all';
+
+    function renderPrompts() {
+      promptsContainer.innerHTML = '';
+      const allList = [
+        ...staticPrompts,
+        ...state.customPrompts.map(cp => ({ id: cp.id, cat: 'custom', text: cp.text, isCustom: true }))
+      ];
+
+      const filtered = activePromptCat === 'all'
+        ? allList
+        : allList.filter(p => p.cat === activePromptCat);
+
+      if (filtered.length === 0) {
+        promptsContainer.innerHTML = '<p style="font-size:13px;color:#94a3b8;">No prompts in this category yet.</p>';
+        return;
+      }
+
+      filtered.forEach(p => {
+        const box = document.createElement('div');
+        box.className = 'prompt-box';
+        box.innerHTML = `
+          <span class="prompt-box-text">${p.text}</span>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <button class="copy-pill-btn" data-copy-text="${encodeURIComponent(p.text)}">Copy</button>
+            ${p.isCustom ? `<button class="delete-card-btn" data-del-prompt="${p.id}">✕</button>` : ''}
+          </div>
+        `;
+        promptsContainer.appendChild(box);
+      });
+
+      // Hook copy
+      promptsContainer.querySelectorAll('[data-copy-text]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const text = decodeURIComponent(btn.dataset.copyText);
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('📋 Prompt copied!');
+          });
+        });
+      });
+
+      // Hook delete custom prompt
+      promptsContainer.querySelectorAll('[data-del-prompt]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.dataset.delPrompt);
+          state.customPrompts = state.customPrompts.filter(cp => cp.id !== id);
+          saveState(false);
+          renderPrompts();
+          showToast('Prompt removed');
+        });
+      });
+
+      document.getElementById('customPromptsBadge').textContent = `${allList.length} ready`;
+    }
+
+    document.querySelectorAll('.cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activePromptCat = pill.dataset.cat;
+        renderPrompts();
+      });
+    });
+
+    addCustomPromptBtn.addEventListener('click', () => {
+      const text = customPromptInput.value.trim();
+      if (!text) return;
+      state.customPrompts.unshift({ id: Date.now(), text });
+      customPromptInput.value = '';
+      saveState(true);
+      activePromptCat = 'custom';
+      document.querySelectorAll('.cat-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.cat === 'custom');
+      });
+      renderPrompts();
+    });
+
+    // =========================================================
+    // TOOL 4: SALES CALCULATOR & CHECKLIST
+    // =========================================================
+    const calcPrice = document.getElementById('calcPrice');
+    const calcUnits = document.getElementById('calcUnits');
+    const calcMonthlyRevenue = document.getElementById('calcMonthlyRevenue');
+    const calcAnnualRevenue = document.getElementById('calcAnnualRevenue');
+    const salesNotes = document.getElementById('salesNotes');
+
+    function updateSalesCalc() {
+      const price = Math.max(1, Number(calcPrice.value) || 19);
+      const units = Math.max(1, Number(calcUnits.value) || 50);
+      const monthly = price * units;
+      const annual = monthly * 12;
+
+      state.salesPrice = price;
+      state.salesUnits = units;
+
+      calcMonthlyRevenue.textContent = `$${monthly.toLocaleString()}`;
+      calcAnnualRevenue.textContent = `$${annual.toLocaleString()}`;
+      document.getElementById('salesGoalBadge').textContent = `$${monthly}/mo`;
+    }
+
+    calcPrice.addEventListener('input', () => {
+      updateSalesCalc();
+      saveState(false);
+    });
+
+    calcUnits.addEventListener('input', () => {
+      updateSalesCalc();
+      saveState(false);
+    });
+
+    salesNotes.addEventListener('input', () => {
+      state.salesNotes = salesNotes.value;
+      saveState(false);
+    });
+
+    function syncSalesUI() {
+      calcPrice.value = state.salesPrice || 19;
+      calcUnits.value = state.salesUnits || 50;
+      salesNotes.value = state.salesNotes || '';
+      updateSalesCalc();
+
+      document.querySelectorAll('#salesChecklist .checklist-item').forEach(item => {
+        const step = Number(item.dataset.salesStep);
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        const isDone = !!state.salesSteps[step];
+        checkbox.checked = isDone;
+        if (isDone) item.classList.add('done');
+        else item.classList.remove('done');
+      });
+    }
+
+    document.querySelectorAll('#salesChecklist .checklist-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        const step = Number(item.dataset.salesStep);
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        if (e.target !== checkbox) {
+          checkbox.checked = !checkbox.checked;
+        }
+        state.salesSteps[step] = checkbox.checked;
+        if (checkbox.checked) item.classList.add('done');
+        else item.classList.remove('done');
+        saveState(false);
+      });
+    });
+
+    // =========================================================
+    // TOOL 5: COMMUNITY CHECKLIST & NOTES
+    // =========================================================
+    const communityNotes = document.getElementById('communityNotes');
+
+    communityNotes.addEventListener('input', () => {
+      state.communityNotes = communityNotes.value;
+      saveState(false);
+    });
+
+    function syncCommunityUI() {
+      communityNotes.value = state.communityNotes || '';
+      document.querySelectorAll('#communityChecklist .checklist-item').forEach(item => {
+        const step = Number(item.dataset.commStep);
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        const isDone = !!state.communitySteps[step];
+        checkbox.checked = isDone;
+        if (isDone) item.classList.add('done');
+        else item.classList.remove('done');
+      });
+    }
+
+    document.querySelectorAll('#communityChecklist .checklist-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        const step = Number(item.dataset.commStep);
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        if (e.target !== checkbox) {
+          checkbox.checked = !checkbox.checked;
+        }
+        state.communitySteps[step] = checkbox.checked;
+        if (checkbox.checked) item.classList.add('done');
+        else item.classList.remove('done');
+        saveState(false);
+      });
+    });
+
+    // =========================================================
+    // HOME SCREEN BADGE UPDATES
+    // =========================================================
+    function updateHomeBadges() {
+      const guideDoneCount = state.guideSteps.filter(Boolean).length;
+      document.getElementById('guideStepsBadge').textContent = `${guideDoneCount}/4 done`;
+
+      const totalPrompts = staticPrompts.length + state.customPrompts.length;
+      document.getElementById('customPromptsBadge').textContent = `${totalPrompts} ready`;
+
+      const monthly = (state.salesPrice || 19) * (state.salesUnits || 50);
+      document.getElementById('salesGoalBadge').textContent = `$${monthly}/mo`;
+    }
+
+    // =========================================================
+    // INITIALIZATION
+    // =========================================================
+    loadState();
+    syncGuideUI();
+    renderPrompts();
+    syncSalesUI();
+    syncCommunityUI();
+    updateHomeBadges();
+  </script>
 
 </body>
 </html>
