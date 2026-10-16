@@ -1,0 +1,12 @@
+# Development findings
+
+- This is a standalone Express/static HTML app, not a Base44 SDK or frontend-framework project. There is no database, build output, or required secret. Vault data lives in the browser under `glam_vault_data_v2`.
+- Use `docker compose -f docker-compose.base44.yml up -d --build`. The web service installs the committed lockfile into a named dependency volume before starting Node's watch mode. Port 3000 serves the bind-mounted `index.html` directly; no prebuilt bundle is involved.
+- Express already binds to `0.0.0.0` and has no hostname/origin restriction requiring a sandbox override. No preview-mode-specific application behavior is needed.
+- HTML is read directly on requests; Node watch mode reloads the server for server-code edits. There is no browser HMR: refresh the preview after HTML changes.
+- The Affirmation Studio is an external, cross-origin Netlify iframe, deliberately retained when closing the modal to preserve its session. Its implementation is not in this repository. Drive PDF/community links only if needed; those resources may require the visitor's external accounts.
+- Checklist labels generate a native checkbox click. Ignore the original label click in row handlers to avoid toggling twice and persisting the wrong state.
+- Custom prompts must be rendered with `textContent`, not interpolated as HTML. Copy handles denied clipboard permission and attempts native copy before giving an actionable message.
+- Verification: `docker compose -f docker-compose.base44.yml ps` should show healthy; `curl -fsS http://localhost:3000/` must serve the current HTML. Run `docker compose -f docker-compose.base44.yml exec -T web node --check server.js` for server syntax.
+- Browser checks passed for all five tool launchers and close buttons, all thirteen checklist labels/checkboxes plus row clicks with storage persistence/restoration, all six prompt filters, custom prompt save/delete with storage verification, sales calculator, notes autosave, desktop/mobile home, all five mobile modal headers, and Studio rendering. Restore existing browser values and delete only prompts created by the current test.
+- Actual clipboard contents could not be verified in the automated browser (document-focus/permission denial); its error path was verified without unhandled errors. Studio reload confirmation, Studio's internal controls, and authenticated access to external PDF/Facebook resources were not automatically verified.
