@@ -778,6 +778,18 @@
       }
       .modal-header {
         padding: 10px 14px;
+        flex-wrap: wrap;
+      }
+      .modal-title-wrap {
+        width: 100%;
+      }
+      .modal-title {
+        min-width: 0;
+        flex: 1;
+      }
+      .header-actions {
+        margin-left: auto;
+        flex-wrap: wrap;
       }
       .modal-title {
         font-size: 16px;
@@ -1287,6 +1299,8 @@
       item.addEventListener('click', (e) => {
         const step = Number(item.dataset.step);
         const checkbox = item.querySelector('input[type="checkbox"]');
+        // Labels trigger a native checkbox click; let that click save once.
+        if (e.target.closest('label')) return;
         if (e.target !== checkbox) {
           checkbox.checked = !checkbox.checked;
         }
@@ -1325,22 +1339,42 @@
         const box = document.createElement('div');
         box.className = 'prompt-box';
         box.innerHTML = `
-          <span class="prompt-box-text">${p.text}</span>
+          <span class="prompt-box-text"></span>
           <div style="display:flex;gap:6px;align-items:center;">
             <button class="copy-pill-btn" data-copy-text="${encodeURIComponent(p.text)}">Copy</button>
             ${p.isCustom ? `<button class="delete-card-btn" data-del-prompt="${p.id}">✕</button>` : ''}
           </div>
         `;
+        box.querySelector('.prompt-box-text').textContent = p.text;
         promptsContainer.appendChild(box);
       });
 
       // Hook copy
       promptsContainer.querySelectorAll('[data-copy-text]').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
           const text = decodeURIComponent(btn.dataset.copyText);
-          navigator.clipboard.writeText(text).then(() => {
+          try {
+            await navigator.clipboard.writeText(text);
             showToast('📋 Prompt copied!');
-          });
+          } catch {
+            // Some embedded browsers deny the Clipboard API; try native copy.
+            const field = document.createElement('textarea');
+            field.value = text;
+            field.readOnly = true;
+            field.style.cssText = 'position:fixed;top:0;left:-9999px;';
+            document.body.appendChild(field);
+            field.select();
+            let copied = false;
+            try {
+              copied = document.execCommand('copy');
+            } catch {
+              // Keep the prompt available for manual copying if permission is denied.
+            } finally {
+              field.remove();
+              btn.focus();
+            }
+            showToast(copied ? '📋 Prompt copied!' : 'Copy unavailable. Select the prompt text to copy.');
+          }
         });
       });
 
@@ -1438,6 +1472,8 @@
       item.addEventListener('click', (e) => {
         const step = Number(item.dataset.salesStep);
         const checkbox = item.querySelector('input[type="checkbox"]');
+        // Labels trigger a native checkbox click; let that click save once.
+        if (e.target.closest('label')) return;
         if (e.target !== checkbox) {
           checkbox.checked = !checkbox.checked;
         }
@@ -1474,6 +1510,8 @@
       item.addEventListener('click', (e) => {
         const step = Number(item.dataset.commStep);
         const checkbox = item.querySelector('input[type="checkbox"]');
+        // Labels trigger a native checkbox click; let that click save once.
+        if (e.target.closest('label')) return;
         if (e.target !== checkbox) {
           checkbox.checked = !checkbox.checked;
         }
